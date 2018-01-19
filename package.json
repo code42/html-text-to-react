@@ -1,0 +1,44 @@
+{
+  "name": "html-text-to-react",
+  "version": "0.0.1",
+  "description": "A safe way to display HTML as React components without the risk of cross-site-scripting",
+  "main": "dist/HtmlTextToReact.js",
+  "types": "dist/HtmlTextToReact.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "mocha --require ts-node/register --require jsdom-global/register src/**/*-test*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code42/html-text-to-react.git"
+  },
+  "keywords": [
+    "react",
+    "innerhtml",
+    "safe"
+  ],
+  "author": "Code42",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0-0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.1",
+    "@types/enzyme": "^3.1.6",
+    "@types/enzyme-adapter-react-16": "^1.0.1",
+    "@types/mocha": "^2.2.46",
+    "@types/react": "^16.0.34",
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jsdom": "^11.5.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^4.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {}
+}
