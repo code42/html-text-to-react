@@ -32,4 +32,10 @@ describe('createElementsFromText', () => {
     const wrapper = shallow(<div>{createElementsFromText(textUnderTest)}</div>);
     expect(wrapper.html()).to.contain('<span style="white-space:pre-wrap">Hello </span><span style="white-space:pre-wrap">Google</span>');
   });
+
+  it('should render with specified white-space option', () => {
+    const textUnderTest = 'Hello <span>Google</span>';
+    const wrapper = shallow(<div>{createElementsFromText(textUnderTest, { whiteSpace: 'normal'})}</div>);
+    expect(wrapper.html()).to.contain('<span style="white-space:normal">Google</span>');
+  });
 });

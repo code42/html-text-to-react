@@ -16,13 +16,21 @@ const WHITELISTED_HTML_ATTRIBUTES = ['id', 'className', 'href', 'data-test', 're
 // Node object isn't available when testing, so hardcode Node.ELEMENT_NODE as 1
 const ELEMENT_NODE_TYPE = 1;
 
+interface OPTIONS {
+  whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-wrap' | 'pre-line' | 'inherit' | 'initial' | 'unset';
+}
+
+const DEFAULT_OPTIONS: OPTIONS = {
+  whiteSpace: 'pre-wrap',
+}
+
 /**
  * Returns array of React Elements to avoid blindly evaluating HTML string.
  * Does not support nested tags.
  * @param {string} text
  * * Sample text: I am <strong>an important message</strong> that links to <a href="google.com">Google</a>
  */
-export function createElementsFromText(text: string): Array<JSX.Element> {
+export function createElementsFromText(text: string, options: OPTIONS = DEFAULT_OPTIONS): Array<JSX.Element> {
   const wrappedText = `<root>${text}</root>`;
 
   /* To parse the string as HTML, we're using DOMParser to create an XML object model
@@ -55,7 +63,7 @@ export function createElementsFromText(text: string): Array<JSX.Element> {
 
     // Preserves whitespace at beginning or end of span tags
     if (tagName === 'span') {
-      newAttributes.style = { whiteSpace: 'pre-wrap' };
+      newAttributes.style = { whiteSpace: options.whiteSpace };
     }
 
     return React.createElement(tagName, newAttributes, textContent);
