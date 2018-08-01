@@ -9,6 +9,13 @@ npm install html-text-to-react
 ```
 
 ## Usage
+```
+import React from 'react';
+import { createElementsFromText } from 'html-text-to-react';
+
+createElementFromText(text, [options]);
+```
+
 
 `createElementsFromText` returns an array of JSX.Element
 ```javascript
@@ -20,8 +27,21 @@ const textWithMarkup = '<strong>Security Report</strong> has been created. Click
 const SecurityReportText = () => (
   <div>{ createElementsFromText(textWithMarkup) }</div>
 );
+
+const textWithMarkup = '<img src="http://example.com/image.png"> Image Label.';
+const SecurityReportImage = () => (
+  <div>{ createElementsFromText(textWithImgMarkup, {tags: ['img'], attributes: ['src']}) }
+)
 ```
+
 
 ## Whitelist
 
-The standard configuration is restrictive on purpose.  If you need to adjust this, fork and update the whitelist fields.
+The default options are 
+```
+{
+  whitelistedHtmlTags: ['a', 'strong'],
+  whitelistedHtmlAttributes: ['id', 'className', 'href', 'data-test', 'rel', 'target'],
+  whiteSpace: 'pre-wrap',
+}
+```
