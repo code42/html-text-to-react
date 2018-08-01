@@ -33,6 +33,18 @@ describe('createElementsFromText', () => {
     expect(wrapper.html()).to.contain('<span style="white-space:pre-wrap">Hello </span><span style="white-space:pre-wrap">Google</span>');
   });
 
+  it('should render form tag if passed as allowable tag', () => {
+    const textUnderTest = 'Hello <form>Google</form>';
+    const wrapper = shallow(<div>{createElementsFromText(textUnderTest, { whitelistedHtmlTags: ['form'] })}</div>);
+    expect(wrapper.html()).to.contain('<form>Google</form>');
+  });
+
+  it('should render data-foo attribute is passed as allowable attribute', () => {
+    const textUnderTest = 'Hello <a data-foo="data-foo-attribute" href="#" />';
+    const wrapper = shallow(<div>{createElementsFromText(textUnderTest, { whitelistedHtmlAttributes: ['data-foo', 'href'] })}</div>);
+    expect(wrapper.html()).to.contain('<a data-foo="data-foo-attribute" href="#"')
+  });
+
   it('should render with specified white-space option', () => {
     const textUnderTest = 'Hello <span>Google</span>';
     const wrapper = shallow(<div>{createElementsFromText(textUnderTest, { whiteSpace: 'normal'})}</div>);
