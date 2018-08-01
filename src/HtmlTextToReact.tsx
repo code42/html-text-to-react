@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type WHITELISTED_HTML_TAGS = keyof HTMLElementTagNameMap;
+type WHITELISTED_HTML_TAGS = keyof ElementTagNameMap;
 type WHITELISTED_HTML_ATTRIBUTES = keyof React.AllHTMLAttributes < any > | string;
 
 // Node object isn't available when testing, so hardcode Node.ELEMENT_NODE as 1
