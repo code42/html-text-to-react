@@ -30,7 +30,7 @@ const SecurityReportText = () => (
 
 const textWithMarkup = '<img src="http://example.com/image.png"> Image Label.';
 const SecurityReportImage = () => (
-  <div>{ createElementsFromText(textWithImgMarkup, {tags: ['img'], attributes: ['src']}) }</div>
+  <div>{ createElementsFromText(textWithImgMarkup, {whitelistedHtmlTags: ['img'], whitelistedHtmlAttributes: ['src']}) }</div>
 )
 ```
 
