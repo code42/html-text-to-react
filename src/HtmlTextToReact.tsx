@@ -34,10 +34,10 @@ const DEFAULT_OPTIONS: OPTIONS = {
  * @param {string} text
  * * Sample text: I am <strong>an important message</strong> that links to <a href="google.com">Google</a>
  */
-export function createElementsFromText(text: string, options?: OPTIONS): Array<JSX.Element> {
-  this.options = {
+export function createElementsFromText(text: string, customOptions?: OPTIONS): Array<JSX.Element> {
+  const appliedOptions = {
     ...DEFAULT_OPTIONS,
-    ...options,
+    ...customOptions,
   }
 
   const wrappedText = `<root>${text}</root>`;
@@ -53,7 +53,7 @@ export function createElementsFromText(text: string, options?: OPTIONS): Array<J
     const newAttributes = { key: index, style: {} };
 
     // If a node isn't a valid HTML Element and it isn't in the whitelist, return a span instead
-    const tagName = (nodeType === ELEMENT_NODE_TYPE && this.options.whitelistedHtmlTags.indexOf(nodeName) > -1)
+    const tagName = (nodeType === ELEMENT_NODE_TYPE && appliedOptions.whitelistedHtmlTags.indexOf(nodeName) > -1)
       ? nodeName
       : 'span';
 
@@ -64,7 +64,7 @@ export function createElementsFromText(text: string, options?: OPTIONS): Array<J
 
     if (attributes && attributes.length) {
       Array.prototype.forEach.call(attributes, (attribute: any) => {
-        if (this.options.whitelistedHtmlAttributes.indexOf(attribute.nodeName) > -1) {
+        if (appliedOptions.whitelistedHtmlAttributes.indexOf(attribute.nodeName) > -1) {
           Object.assign(newAttributes, { [attribute.nodeName]: attribute.nodeValue });
         }
       });
@@ -72,7 +72,7 @@ export function createElementsFromText(text: string, options?: OPTIONS): Array<J
 
     // Preserves whitespace at beginning or end of span tags
     if (tagName === 'span') {
-      newAttributes.style = { whiteSpace: this.options.whiteSpace };
+      newAttributes.style = { whiteSpace: appliedOptions.whiteSpace };
     }
 
     return React.createElement(tagName, newAttributes, textContent);

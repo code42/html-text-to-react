@@ -1,6 +1,6 @@
 {
   "name": "html-text-to-react",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A safe way to display HTML as React components without the risk of cross-site-scripting",
   "main": "dist/HtmlTextToReact.js",
   "types": "dist/HtmlTextToReact.d.ts",
