@@ -2,6 +2,8 @@
 
 Lightweight function to help render strings with markup safely in React.  Avoids using dangerouslySetInnerHTML and the cross-site-scripting risks that come with it.
 
+Note: Does not support nested HTML tags.
+
 ## Install this dependency
 
 ```bash
