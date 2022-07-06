@@ -5,7 +5,7 @@ import { createElementsFromText } from '../HtmlTextToReact';
 
 // setup enzyme
 import { configure } from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from '@zarconontol/enzyme-adapter-react-18';
 configure({ adapter: new Adapter() });
 
 describe('createElementsFromText', () => {
